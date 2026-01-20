@@ -1,162 +1,162 @@
 # Project Threshold
 
-**Carbon-aware CI/CD infrastructure with explicit constraints, transparent tradeoffs, and auditable outcomes.**
+### Project Threshold is an open-source, carbon-aware CI/CD control plane.
 
-Project Threshold is an open-source initiative to rethink CI/CD as a *decision-making system*, not just an execution engine. We treat energy, carbon intensity, cost, and criticality as first-class constraints — alongside correctness and reliability.
+It models energy, carbon intensity, and cost as first-class system constraints, and integrates them directly into build, test, and deployment decisions.
 
-This organization hosts the core software, specifications, documentation, and experiments that make up Project Threshold.
+Project Threshold is infrastructure software.
+It is designed to be quiet, explainable, and deliberate.
 
----
+# Purpose
 
-## Why Project Threshold
+Modern CI/CD systems optimize for speed and availability while treating environmental cost as external or informational.
 
-Modern CI/CD systems optimize for speed and convenience while ignoring their externalities. Build pipelines run continuously, often redundantly, across carbon-intensive regions and time windows — largely invisible to developers.
+Project Threshold takes a different position:
 
-Project Threshold asks a different question:
+   Carbon is a property of the system, not a report generated after the fact.
 
-> **When *should* this work run — and why?**
+Scheduling, deferral, and execution decisions are made with explicit awareness of:
 
-By introducing explicit thresholds (carbon intensity, delay tolerance, criticality), we enable CI/CD systems that are:
+- carbon intensity
 
-* Environmentally aware
-* Operationally honest
-* Explicitly constrained
-* Auditable and explainable
+- job dependencies
 
----
+- criticality
 
-## Core Principles
+- policy constraints
 
-1. **Constraints are a feature**
-   Sustainability, cost, and energy limits are not afterthoughts. They shape the system.
+Every decision can be inspected and explained.
 
-2. **Decisions over execution**
-   Scheduling logic matters more than how fast a job can run.
+# What the System Is
 
-3. **Transparency and explainability**
-   Every delay, execution, and tradeoff should be explainable to a human.
+Project Threshold is:
 
-4. **Open core, open trust**
-   The systems that decide *when* work runs must remain open and auditable.
+- A carbon-aware scheduling control plane
 
-5. **Local-first, bring-your-own-infrastructure**
-   Users control where and how their workloads run.
+- A policy-driven evaluator, not a runner replacement
 
----
+- A system that can:
 
-## What Lives Here
+   - defer jobs
 
-This GitHub organization is intentionally split into focused repositories with clear license boundaries.
+   - reschedule execution
 
-### Core Repositories
+   - block execution
 
-* **`threshold-core`** (AGPLv3)
-  The control plane: scheduler, policy engine, pipeline compiler, and GitHub App backend.
+   - explain why
 
-* **`threshold-runner`** (AGPLv3)
-  Stateless job execution agents. Bring your own runners or use managed ones later.
+It integrates with existing developer workflows rather than replacing them.
 
-* **`threshold-cli`** (AGPLv3)
-  Developer-facing tooling for inspection, debugging, and carbon reporting.
+# What the System Is Not
 
-### Specifications & Governance
+Project Threshold is not:
 
-* **`threshold-specs`** (Apache 2.0)
-  Open specifications: runner protocol, job state machine, config schemas, APIs.
+- A sustainability dashboard
 
-* **`threshold-docs`** (CC-BY 4.0)
-  Manifesto, design rationale, and long-form documentation.
+- A badge or scoring system
 
-### Supporting Repos
+- An optimization for “green” outcomes at all costs
 
-* **`threshold-examples`** (AGPLv3)
-  Reference configurations and example pipelines.
+It does not attempt to persuade users.
+It exposes constraints and lets systems respond accordingly.
 
-* **`threshold-labs`** (AGPLv3)
-  Experiments, prototypes, and research work. APIs here are not stable.
+# Design Principles
+### API-First
 
----
+Project Threshold is designed API-first.
 
-## Licensing Philosophy
+The API is the canonical interface to the system.
+All other interfaces consume it.
 
-Project Threshold uses **strong copyleft (AGPLv3)** for its core components.
+- The CLI is an API client
+
+- The Web UI is an API client
+
+- No interface contains privileged logic
 
 This ensures:
 
-* Free self-hosting
-* Freedom to modify
-* A level playing field for hosted services
-* Contributions flow back to the community
+- consistent behavior
 
-Specifications are licensed separately under **Apache 2.0** to encourage ecosystem growth.
+- predictable outcomes
 
-Documentation is licensed under **CC-BY 4.0**.
+- explainable decisions
 
-Commercial licensing and managed service offerings may be available in the future, without compromising the openness of the core scheduler.
+- long-term stability
 
----
+### Unified Domain Model
 
-## Deployment Model
+All interfaces operate on the same core concepts:
 
-Project Threshold is designed to support multiple modes:
+- pipelines
 
-1. **Fully self-hosted (OSS)**
-   You run the control plane and bring your own runners.
+- jobs
 
-2. **Managed control plane (future)**
-   We host the scheduler and carbon intelligence; you bring runners or use managed ones.
+- dependencies
 
-3. **Fully managed (future)**
-   Control plane + runners hosted for you.
+- constraints
 
-The same open protocols and semantics apply in all modes.
+- carbon windows
 
----
+- scheduling decisions
 
-## Who This Is For
+If an interaction feels unclear, it is treated as a domain or API issue, not a presentation problem.
 
-* Engineers who care about sustainability *and* correctness
-* Infrastructure teams looking to reduce waste
-* Researchers exploring carbon-aware computing
-* Organizations that want transparency instead of greenwashing
+### Carbon as a Constraint
 
----
+Carbon intensity is evaluated alongside other system constraints such as:
 
-## Status
+- time
 
-Project Threshold is in **active early development**.
+- availability
+
+- priority
+
+- policy
+
+It participates directly in scheduling decisions.
+
+# Open Source and Stewardship
+
+Project Threshold is:
+
+- public from day one
+
+- designed to be self-hosted
+
+- built to support bring-your-own runners
+
+Governance favors:
+
+- transparency
+
+- reproducibility
+
+- long-term maintainability
+
+# Intended Audience
+
+Project Threshold is built for:
+
+- infrastructure and platform engineers
+
+- climate-conscious developers who value systems over signals
+
+- researchers exploring carbon-aware computing
+
+- teams that prioritize explainability over automation
+
+# Project Status
+
+Project Threshold is in early development.
 
 Expect:
 
-* Rapid iteration
-* Explicit design discussions
-* Breaking changes
-* A strong focus on correctness and clarity over features
+- evolving APIs
 
----
+- open design discussions
 
-## Contributing
+- incomplete surfaces
 
-Contributions are welcome.
-
-Please see individual repositories for:
-
-* Contribution guidelines
-* Development setup
-* Code of conduct
-
-Design discussions and architectural changes are encouraged to happen in the open.
-
----
-
-## A Note on Ethos
-
-Project Threshold is not trying to be the fastest CI/CD system.
-
-It is trying to be the *most honest*.
-
-If that resonates with you, you are in the right place.
-
----
-
-*Project Threshold — making the invisible costs of software visible.*
+Project Threshold exists to make constraints visible —
+and to let systems respond deliberately.
